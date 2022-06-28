@@ -18,14 +18,14 @@ class LidarProcessor:
         This method is used to instantiate the class.
         Args:
             public_data_url (str, optional): [the url where the dataset can be accessed from]. Defaults to "https://s3-us-west-2.amazonaws.com/usgs-lidar-public/".
-            pipeline_json_path (str, optional): [the json file describing the pipeline structure]. Defaults to "../assets/get_data.json".
+            pipeline_json_path (str, optional): [the json file describing the pipeline structure]. Defaults to "../data/ept.json".
         """
         self.logger = App_Logger().get_logger(__name__)
         self.file_handler = FileHandler()
         self.pipeline_json = self.file_handler.read_json(pipeline_json_path)
         self.public_data_url = public_data_url
         self.input_epsg = 3857
-        self.metadata = self.file_handler.read_csv("../assets/usgs_3dep_metadata.csv")
+        
         values = {"year": 0}
         self.metadata.fillna(value=values, inplace=True)
 
